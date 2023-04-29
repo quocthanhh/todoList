@@ -3,22 +3,27 @@
         <h1>Todo list </h1>
         <div class="main-content">
             <div class="left-content">
-                <div class="input-task" v-if="test === 1">
-                    <form v-on:submit.prevent="addNewTodo">
-                        <input v-model="newTodo" id="new-todo" placeholder="Input task" />
-                        <button id="Add-btn">Add</button>
-                    </form>
-                </div>
-                <div v-else>
-                    <input v-model="newTodo" id="new-todo" placeholder="Edit task" />
-                    <button id="Add-btn" @click="updateClick">Update</button>
-                </div>
-                <div class="filter-list">
-                    <select v-model="selectedOptions">
-                        <option selected> All</option>
-                        <option v-for="(option, index) in select_list" :value="option.value" :key="index">{{ option.value }}
-                        </option>
-                    </select>
+                <div class="upper-content">
+                    <div class="filter-list">
+                        <select v-model="selectedOptions">
+                            <option selected> All</option>
+                            <option v-for="(option, index) in select_list" :value="option.value" :key="index">{{
+                                option.value }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="input-btn">
+                        <div v-if="test === 1">
+                            <form v-on:submit.prevent="addNewTodo" class="input-task">
+                                <input v-model="newTodo" id="new-todo" placeholder="Input task" />
+                                <button id="Add-btn">Add</button>
+                            </form>
+                        </div>
+                        <div v-else class="input-task">
+                            <input v-model="newTodo" id="new-todo" placeholder="Edit task" />
+                            <button id="Add-btn" @click="updateClick">Update</button>
+                        </div>
+                    </div>
                 </div>
                 <table>
                     <thead>
@@ -168,7 +173,7 @@ export default defineComponent({
 </script>
   
 <style scoped>
-.container {    
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,11 +225,7 @@ input::placeholder {
 }
 
 .filter-list {
-    display: flex;
-    justify-content: left;
-    align-items: left;
     width: 100%;
-    margin-top: 20px;
 }
 
 select {
@@ -270,8 +271,6 @@ td {
 
 .input-task {
     display: flex;
-    align-items: center;
-    width: 100%;
 }
 
 .right-content {
@@ -308,5 +307,26 @@ td {
 #edit-btn:hover {
     opacity: 0.7;
 }
+
+.upper-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.description-content {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.description-content > div {
+    font-size: 18px;
+    font-weight: 500;
+}
+
 </style>
   
